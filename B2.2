@@ -1,0 +1,13 @@
+#include<iostream>
+#include<math.h>
+#include<iomanip>
+using namespace std;
+int main()
+{
+    double x0, xn, dx;
+    cout<<"vvedite x0, xn, dx"<<endl;
+    cin>>x0>>xn>>dx;
+    for (double i=x0;i<=xn;i+=dx)
+        cout<<"priblezhennoe "<<setfill(' ')<<setw(10)<<((1-i*i/2+i*i*i*i/24-i*i*i*i*i*i/720+i*i*i*i*i*i*i*i/40320)+(i-i*i*i/6+i*i*i*i*i/120-i*i*i*i*i*i*i/5040))<<" nastoiashee "<<(sin(i)+cos(i))<<endl;
+}
+//error is large at pi and more
