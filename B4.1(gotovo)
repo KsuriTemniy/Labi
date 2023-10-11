@@ -1,0 +1,62 @@
+#include<iostream>
+#include<fstream>
+using namespace std;
+
+int main()
+{
+    // ofstream fout;
+    // fout.open("text.txt"); //nado raskomentit chto bi fail sosdat kuda text vstavlyat
+    // fout<<"HI"<<endl;
+    // fout.close();
+    ifstream in;
+    in.open("text.txt");
+    int i = 0;
+    int flength = 0;
+
+  
+    while(!in.eof())
+    {
+        char ch;
+        in.get(ch);
+        flength++;
+    }
+    in.close();
+    in.open("text.txt");
+    char* crr = new char[flength]; 
+    for(int i = 0; i<=flength;i++)
+    {
+        char ch;
+        in.get(ch);
+        crr[i] = ch;
+    }
+    cout<<endl;
+    
+    int ii = 0;
+    int* podschet = new int[127];
+    for (int i = 0; i < 127; i++)
+    podschet[i] = 0;
+    while(ii<flength)
+    {   
+        for (int i = 0; i < 127; i++)
+        {
+            if (crr[ii] == char(i))
+            podschet[i]++;
+            
+        }
+        ii++;
+    }
+    for (int i = 0; i < 127; i++)
+    if (podschet[i]!=0)
+    cout<<i<<" "<<char(i)<<" "<<podschet[i]<<endl;
+    for (int i = 0; i < flength; i++)
+    {
+        bool flag = true;
+        for (int j = 0; j < i; j++)
+        {
+            if (crr[i]==crr[j])
+            flag = 0;
+        }
+        if (flag == 1) cout<<crr[i];
+    }
+    
+}
