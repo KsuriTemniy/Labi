@@ -1,1 +1,43 @@
+#include<iostream>
+using namespace std;
 
+int main()
+{
+    bool *arr = new bool[9999];
+    arr[0]=0;
+    arr[1]=0;
+    arr[2]=0;
+    for (int i = 2; i<=9999; i++)
+    {
+        for (int j = i*i; j<=9999; j+=i)
+        arr[j]=1;
+    }
+    for (int i = 999; i<=9999; i++)
+    if (!arr[i])
+    {
+        int i1 = i/1000;
+        int i2 = i%1000/100;
+        int i3 = i%100/10;
+        int i4 = i%10;
+        if ((i1+i2) == (i3+i4))
+        cout<<i<<endl;
+    }
+}
+/*#include<iostream>
+using namespace std;
+
+int main()
+{
+    bool *arr = new bool[9223372036854775807];
+    arr[0]=0;
+    arr[1]=0;
+    arr[2]=0;                                                      //V TEORII MAKSIUM NO ETO 70MLN TB VRODE
+    for (unsigned long long i = 2; i<=9223372036854775807; i++)
+    {
+        for (unsigned long long j = i*i; j<=9223372036854775807; j+=i)
+        arr[j]=1;
+    }
+    for (unsigned long long i = 0; i<=9223372036854775807; i++)
+    if (!arr[i])
+    cout<<i<<endl;
+}*/
