@@ -1,0 +1,29 @@
+#include <iostream>
+//#include <conio.h>
+using namespace std;
+
+int main()
+{
+    int d = 0;
+    cout<<"vvedite n"<<endl;
+    int n = 0;
+    int k = 1;
+    cin>>n;
+    cout<<"vvedite posledovatelnost"<<endl;
+    cin>>d;
+    int nn = 0;
+    for (int i = 1; i<n; i++)
+    {
+        int temp = d;
+        cin>>d;
+        if(k>=nn)
+        nn=k;
+        cout<<"d = "<<d<<" "<<"temp = "<<temp<<" k = "<<k<<endl;
+        if ((d-temp) == 1)
+        k++; 
+        else k = 1;
+        if(k>=nn)
+        nn=k;
+    }
+    cout<<"max = "<<nn<<endl;
+}
