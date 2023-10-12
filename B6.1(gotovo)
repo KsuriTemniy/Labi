@@ -1,0 +1,131 @@
+//(ФИО, возраст, курс, пол, успеваемость)
+//Определить количество неуспевающих студентов на n курсе.
+//Формат ввода: раскоментить открытие потока вывода что бы создался файл закоментить его и в открытый файл с снадписью hi вводить ф и о пол возраст пол курс
+#include<iostream>
+//#include<conio.h>
+#include<string>
+#include<iomanip>
+#include<fstream>
+using namespace std;
+
+class Student
+{
+private:
+    int Vozrast, Kurs, Bal;
+    int Flength;
+    string F,I,O;
+    string Pol;
+public:
+    void SetVozrast(int a)
+    {
+        Vozrast=a;
+    }
+    void SetKurs(int a)
+    {
+        Kurs=a;
+    }
+    void SetBal(int a)
+    {
+        Bal=a;
+    }
+    int GetVozrast()
+    {
+        return Vozrast;
+    }
+    int GetKurs()
+    {
+        return Kurs;
+    }
+    int GetBal()
+    {
+        return Bal;
+    }
+    void SetF(string a)
+    {   
+        F = a;
+    }
+    void SetPol(string a)
+    {   
+        Pol = a;
+    }
+    void SetI(string a)
+    {   
+        I = a;
+    }
+    void SetO(string a)
+    {   
+        O = a;
+    }
+    string GetF()
+    {
+        return F;
+    }
+    string GetPol()
+    {
+        return Pol;
+    }
+    string GetI()
+    {
+        return I;    
+    }
+    string GetO()
+    {
+        return O;
+    }
+    void Vivod()
+    {
+        cout<<"|"<<setfill(' ')<<setw(10)<<GetF()<<setfill(' ')<<setw(10)<<GetI()<<setfill(' ')<<setw(10)<<GetO()<<" | Pol: "<<setfill(' ')<<setw(10)<<GetPol() <<" | "<<"Age "<<setfill(' ')<<setw(2)<<GetVozrast()<<" | Kurs "<<setfill(' ')<<setw(2)<<GetKurs()<<" | Ball "<<setfill(' ')<<setw(2)<<GetBal()<<"|" <<endl;
+    }
+};
+
+
+
+int main()
+{
+    // ofstream fout;
+    // fout.open("textt.txt");
+    // fout<<"HI"<<endl;
+    // fout.close();
+    ifstream f;
+    f.open("textt.txt");
+    Student* MyGroup = new Student[25];
+    for (int i = 0; i < 4; i++)
+    {
+    string FIO;
+    f>>FIO;
+    MyGroup[i].SetF(FIO);
+    f>>FIO;
+    MyGroup[i].SetI(FIO);
+    f>>FIO;
+    MyGroup[i].SetO(FIO);
+    f>>FIO;
+    MyGroup[i].SetPol(FIO);
+    int age;
+    f>>age;
+    MyGroup[i].SetVozrast(age);
+    f>>age;
+    MyGroup[i].SetKurs(age);
+    f>>age;
+    MyGroup[i].SetBal(age); 
+    }
+
+    for (int i = 0; i < 25; i++)
+    {
+        MyGroup[i].Vivod();
+    }
+    cout<<"vvedite kurs"<<endl;
+    int kurss = 0;
+    cin>>kurss;
+    int kolvo = 0;
+    cout<<"spisok neuspevayuschih studentov(otchisleni):"<<endl;
+    for (int i = 0; i < 25; i++)
+    {
+        if ((MyGroup[i].GetKurs()==kurss)&&(MyGroup[i].GetKurs()<4))
+        {
+            cout<<MyGroup[i].GetF()<<" "<<MyGroup[i].GetI()<<" "<<MyGroup[i].GetO()<<endl;
+            kolvo++;
+        }
+    }
+    cout<<"-----------------------"<<endl;
+    cout<<"kolvo neuspevayusvhih studentov(otchisleni): "<<kolvo<<endl;
+}
