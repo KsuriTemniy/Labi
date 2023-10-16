@@ -1,5 +1,6 @@
 #include <iostream>
-//#include <conio.h>
+#include <conio.h>
+#include<math.h>
 using namespace std;
 
 int main()
@@ -8,22 +9,30 @@ int main()
     cout<<"vvedite n"<<endl;
     int n = 0;
     int k = 1;
-    cin>>n;
-    cout<<"vvedite posledovatelnost"<<endl;
-    cin>>d;
+    cin >> n;
     int nn = 0;
+    cin >> d;
+    bool tek;
+    tek = ((abs(d)) == d);
     for (int i = 1; i<n; i++)
     {
         int temp = d;
         cin>>d;
+        bool pred = tek;
+        tek = ((abs(d)) == d);
+        if (pred == tek)
+        k++;     
+        else
+        {
         if(k>=nn)
         nn=k;
-        cout<<"d = "<<d<<" "<<"temp = "<<temp<<" k = "<<k<<endl;
-        if ((d-temp) == 1)
-        k++; 
-        else k = 1;
-        if(k>=nn)
-        nn=k;
+        k=1;
+        }
+        if (k >= n)
+        {
+            cout << n << endl;
+            return 0;
+        }
     }
-    cout<<"max = "<<nn<<endl;
+    cout<<nn<<endl;
 }
