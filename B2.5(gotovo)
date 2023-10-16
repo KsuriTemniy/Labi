@@ -1,1 +1,76 @@
-solution is on a computer in 124 classrooms
+#include<iostream>
+#include<math.h>
+using namespace std;
+//int pow(int a, int b)
+//{
+//    int temp = a;
+//    for (int i = 1; i < b; i++)
+//        a = a * temp;
+//    return a;
+//}
+int main()
+{
+    int k;
+    cout << "Vvedite nomer tsifry v posledovatel'nosti Fibonachchi: ";
+    cin >> k;
+    k += 1;
+
+    if (k <= 0)
+    {
+        cout << "Nomer dolzhen byt' polozhitel'nym tselim chislom." << endl;
+        return 1;
+    }
+
+    if (k == 1)
+    {
+        cout << "Pervaya tsifra v posledovatel'nosti Fibonachchi: 0" << endl;
+        return 0;
+    }
+
+    if (k == 2)
+    {
+        cout << "Vtoraya tsifra v posledovatel'nosti Fibonachchi: 1" << endl;
+        return 0;
+    }
+
+    int a = 0, b = 1, c;
+    int z = 3;
+    cout << a << ", " << b<< ", ";
+    for (int i = 3; i <= k; i++)
+    {
+        c = a + b;
+        a = b;
+        b = c;
+        int razrad = 0;
+        int temp = c;
+        while (temp % 10 > 0)
+        {
+            temp = temp / 10;
+            razrad += 1;
+        }
+        z += razrad;
+        cout << c << ", ";
+        if (z >= k)
+        {
+            
+            temp = c;
+            razrad = 0;
+            while (temp % 10 > 0)
+            {
+                temp = temp / 10;
+                razrad += 1;
+            }
+            int gg = razrad-(z - k);
+            /*int poryadok = (pow(10, (razrad - gg)));
+            cout << endl << ((c % poryadok)/(poryadok-1)) << " " << razrad << endl;*/
+            /*cout << endl <<"chislo " << c << " cifra " << gg << endl;*/
+            int raf = pow(10, (razrad-gg+1));
+            int rfe = pow(10, (razrad - gg));
+            cout <<endl<< (c%raf)/rfe <<endl;
+            //1 cifra v 4-znachom chisle = (c/1000)%100
+            //cout << "0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597" << endl;
+            return 0;
+        }
+    }
+    return 0;
+}
