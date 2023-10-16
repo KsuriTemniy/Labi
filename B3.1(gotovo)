@@ -1,0 +1,130 @@
+#include<conio.h>
+#include<iostream>
+#include<ctime>
+#include<stdlib.h>
+#include<windows.h>
+using namespace std;
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+    srand(time(NULL));
+    int n = 0;
+    cout << "Введите желаемый размер массива" << endl;
+    cin >> n;
+    int* arr = new int[n];
+    int lamerarr[5] = { 1,2,3,4,5 };
+    bool iflamerarr = 0;
+    ArrFillTypeChoose:
+    system("cls");
+    cout << "Как вы хотите заполнить массив?" << endl;
+    cout << "1.Случайно" << endl << "2.\"Один, два, три, ... n\" " << endl << "3.Ввести с клавиатуры" << endl << "4.При описании с инициализацией" << endl;
+    char c = _getch();
+    system("cls");
+    char cc;
+    switch (c)
+    {
+    case '1':
+        cout << "Введите желаемый хmin и хmax пределы рандома" << endl;
+        int xmin, xmax;
+        cin >> xmin >> xmax;
+    RandTypeChoose:
+        system("cls");
+        cout << "Желаете ли вы что бы числа в массиве не повторялись? " << endl << "1-Да" << endl << "2-Нет" << endl;
+        cc = _getch();
+        switch (cc)
+        {
+        case '1':
+            system("cls");
+            if ((xmax - xmin) <= n)
+            {
+                cout << "Данного диапазона не хватит для заполнения массива длинной n" << endl;
+                Sleep(1000);
+                goto RandTypeChoose;
+            }
+            for (int i = 0; i < n; i++)
+            {
+                bool flag = 0;
+                arr[i] = (rand() + xmin) % xmax;
+                for (int j = 0; j < i; j++)
+                {
+                    if (arr[i] == arr[j])
+                    {
+                        flag = 1;
+                    }
+                }
+                if (flag == 1)
+                    i--;
+                else cout << arr[i] << " ";
+            }
+            cout << endl;
+            break;
+        case '2':
+            system("cls");
+            for (int i = 0; i < n; i++)
+            {
+                arr[i] = (rand() + xmin) % xmax;
+                cout << arr[i] << " ";
+            }
+            cout << endl;
+            break;
+        default: cout << "Введите 1 или 2" << endl; Sleep(1000); goto RandTypeChoose; break;
+        }
+        break;
+    case '2':
+        for (int i = 0; i < n; i++)
+        {
+            arr[i] = i;
+            cout << arr[i] << ' ';
+        }
+        cout << endl;
+        break;
+    case '3':
+        for (int i = 0; i < n; i++)
+        {
+            cin >> arr[i];
+        }
+        system("cls");
+        for (int i = 0; i < n; i++)
+        {
+            cout << arr[i] << ' ';
+        }
+        cout << endl;
+        break;
+    case '4':
+        iflamerarr = 1;
+        break;
+    default:  cout << "Введите 1, 2 или 3" << endl; Sleep(1000); goto ArrFillTypeChoose; break;
+    }
+    if (iflamerarr)
+    {
+        int* brr = new int[5];
+        for (int i = 0; i < 5; i++)
+        {
+            int k = 0;
+            for (int j = 0; j < 5 - i; j++)
+            {
+                if (arr[j] <= arr[i])
+                    k++;
+            }
+            brr[i] = k;
+        }
+        for (int i = 0; i < 5; i++)
+            cout << brr[i] << " ";
+        cout << endl;
+        return 0;
+    }
+    int* brr = new int[n];
+    for (int i = 0; i < n; i++)
+    {
+        int k = 0;
+        for (int j = 0; j < n-i; j++)
+        {
+            if (arr[j] <= arr[i])
+                k++;
+        }
+        brr[i] = k;
+    }
+    for (int i = 0; i < n; i++)
+        cout << brr[i] << " ";
+    cout << endl;
+}
