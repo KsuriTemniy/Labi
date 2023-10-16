@@ -1,1 +1,27 @@
-Will be later
+#include <iostream>
+using namespace std;
+//p(x) = ((... ((an * x + an - 1)x + an - 2)x + ... + a2)x + a1)x + a0 
+
+int Pow(int a, int b, int *normumn)
+{
+    int temp = a;
+    if (b == 1)
+        return a;
+    if (b == 0)
+        return 1;
+    for (int i = 1; i < b; i++)
+    {
+        a *= temp;
+        normumn++;
+    }
+    return a;
+}
+int main()
+{
+    int *gornerumn;
+    int *gornersum;
+    int *normumn;
+    int *normsum;
+    cout << Pow(2, 4, normumn);
+    cout << normumn << endl;
+}
