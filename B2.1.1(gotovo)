@@ -1,0 +1,26 @@
+//#include<cmath>
+using namespace std;
+int main()
+{
+    cout << "vvedite n k" << endl;
+    int n, k, flag = 0;
+    cin >> n >> k;
+    int* cifri = new int[10];
+    for (int i = 0; i < 10; i++)
+        cifri[i] = 0;
+    while (n > 0)
+    {
+        for (int i = 0; i < 10; i++)
+            if (n % 10 == i)
+            {
+                cifri[i]++;
+                if (cifri[i] == k)
+                {
+                    cout << "yes" << endl;
+                    return 0;
+                }
+                n = (n - n % 10) / 10;
+            }
+    }
+    cout << "no" << endl;
+}
