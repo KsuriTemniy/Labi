@@ -1,0 +1,27 @@
+#include<iostream>
+#include<cmath>
+//Верно ли, что первые n цифр дробной части заданного положительного вещественного числа
+//образуют возрастающую последовательность ?
+using namespace std;
+int main()
+{
+	cout << "vvedite n k" << endl;
+	int k;
+	double n;
+	cin >> n >> k;
+	int poltochki = 0;
+	double x = n - int(n);
+	int temp = (int((x / pow(0.1, 1))) % 10) % 10;
+	for (int i = 2; i <= k; i++)
+	{
+		int desat = (pow(10, i));
+		int odinadcat = (pow(10, i - 1));
+		if ((int((x / pow(0.1, i))) % desat) % 10 != (temp + 1))
+		{
+			cout << "net" << endl;
+			return 0;
+		}
+		temp = (int((x / pow(0.1, i))) % desat) % 10;
+	}
+	cout << "yes" << endl;
+}
