@@ -1,5 +1,6 @@
 #include<iostream>
 #include<math.h>
+#include<iomanip>
 unsigned long long factorial(int a)
 {
     unsigned long long b = 1;
@@ -8,26 +9,27 @@ unsigned long long factorial(int a)
     for (int i = 1; i <= a; i++)
         b *= i;
     return b;
-        
+
 }
 using namespace std;
 int main()
 {
-    long double x0, xn, dx;
+    double x0, xn, dx;
     cout << "vvedite x0, xn, dx" << endl;
     cin >> x0 >> xn >> dx;
-   
+
     unsigned long long x;
     int g;
     long double pribl = 0;
+    cout << "   fake" << "\t   |" << "    real" << endl;
     for (long double i = x0; i <= xn; i += dx)
     {
         long double delta = 2;
         pribl = 0;
         x = 0;
         bool flag = true;
-        while (delta > 0.000001)
-        { 
+        while (delta >= 0.000001)
+        {
             if (flag)
             {
                 g = 1;
@@ -38,11 +40,12 @@ int main()
                 g = -1;
                 flag = true;
             }
-            pribl += g*(pow(i, x) / factorial(x) + pow(i, x+1) / factorial(x+1));
-            delta = abs((sin(i) + cos(i)) - pribl);
-            x+=2;
+            delta = (pow(i, x) / factorial(x) + pow(i, x + 1) / factorial(x + 1));
+            pribl += g * delta;
+            x += 2;
 
         }
-            cout << "priblezhennoe " << pribl << " nastoiashee " << (sin(i) + cos(i)) << endl;
+
+        cout<<setfill(' ') << setw(10)<<pribl << " | " << setfill(' ') << setw(10) << (sin(i) + cos(i)) << " | " << setfill(' ') << setw(10) << (sin(i) + cos(i))-pribl<<endl;
     }
 }
