@@ -1,6 +1,8 @@
 #include<iostream>
 #include<math.h>
+
 using namespace std;
+
 int main()
 {
     for (int i = 1000; i<10000; i++)
@@ -12,7 +14,7 @@ int main()
         int i3 = i%100/10;
         int i4 = i%10;
         if ((i1+i2) == (i3+i4))
-            {
+        {
             while ((k<i)&&(flag == 0))
             {
                 if ((i%k)==0)
@@ -20,7 +22,6 @@ int main()
                 k++;
             }
             if (!flag) cout<<i<<endl;
-            }
-    
+        }    
     }
 }
