@@ -1,76 +1,76 @@
 #include<iostream>
 #include<math.h>
+
 using namespace std;
-//int pow(int a, int b)
-//{
-//    int temp = a;
-//    for (int i = 1; i < b; i++)
-//        a = a * temp;
-//    return a;
-//}
+
 int main()
 {
+    setlocale(LC_ALL, "Russian");
+
     int k;
-    cout << "Vvedite nomer tsifry v posledovatel'nosti Fibonachchi: ";
+    cout << "Ведите номер цифры в последовательности Фибоначи, которую вы хотите получить: ";
     cin >> k;
-    k += 1;
 
     if (k <= 0)
     {
-        cout << "Nomer dolzhen byt' polozhitel'nym tselim chislom." << endl;
+        cout << "Номер цифры должен быть положительным числом" << endl;
         return 1;
     }
 
     if (k == 1)
     {
-        cout << "Pervaya tsifra v posledovatel'nosti Fibonachchi: 0" << endl;
+        cout << "Первая цифра в последовательности Фибоначчи  0" << endl;
         return 0;
     }
 
     if (k == 2)
     {
-        cout << "Vtoraya tsifra v posledovatel'nosti Fibonachchi: 1" << endl;
+        cout << "Вторая цифра в последовательности Фибоначчи  1" << endl;
         return 0;
     }
 
-    int a = 0, b = 1, c;
-    int z = 3;
-    cout << a << ", " << b<< ", ";
+    int num_prev_prev = 0, num_prev = 1, num_current;
+    int pos = 3;
+    cout << endl << num_prev_prev << ", " << num_prev << ", ";
+
     for (int i = 3; i <= k; i++)
     {
-        c = a + b;
-        a = b;
-        b = c;
-        int razrad = 0;
-        int temp = c;
-        while (temp % 10 > 0)
+        num_current = num_prev_prev + num_prev;
+        num_prev_prev = num_prev;
+        num_prev = num_current;
+
+        int rank = 0;
+
+        int num_current_copy = num_current;
+        while (num_current_copy % 10 > 0)
         {
-            temp = temp / 10;
-            razrad += 1;
+            num_current_copy /= 10;
+            rank += 1;
         }
-        z += razrad;
-        cout << c << ", ";
-        if (z >= k)
+
+        pos += rank;
+        
+        cout << num_current << ", ";
+        
+        if (pos >= k)
         {
-            
-            temp = c;
-            razrad = 0;
-            while (temp % 10 > 0)
+            num_current_copy = num_current;
+            rank = 0;
+
+            while (num_current_copy % 10 > 0)
             {
-                temp = temp / 10;
-                razrad += 1;
+                num_current_copy /= 10;
+                rank += 1;
             }
-            int gg = razrad-(z - k);
-            /*int poryadok = (pow(10, (razrad - gg)));
-            cout << endl << ((c % poryadok)/(poryadok-1)) << " " << razrad << endl;*/
-            /*cout << endl <<"chislo " << c << " cifra " << gg << endl;*/
-            int raf = pow(10, (razrad-gg+1));
-            int rfe = pow(10, (razrad - gg));
-            cout <<endl<< (c%raf)/rfe <<endl;
-            //1 cifra v 4-znachom chisle = (c/1000)%100
-            //cout << "0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597" << endl;
+            
+            int pos_k_in_num_current = rank - (pos - k);
+            
+            //выделение ка-той цифры из числа
+            int raf = pow(10, (rank - pos_k_in_num_current + 1));
+            int rfe = pow(10, (rank - pos_k_in_num_current));
+            cout << endl << endl << "Ваша цифра " <<(num_current % raf) / rfe << endl;           
+
             return 0;
         }
     }
-    return 0;
 }
