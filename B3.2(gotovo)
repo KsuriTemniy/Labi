@@ -4,14 +4,21 @@ using namespace std;
 int main()
 {
     srand(time(NULL));
+
     cout << "vvedite razmer matrici" << endl;
     int n;
     cin >> n;
+
+
     int **arr = new int *[n];
+
+
     for (int i = 0; i < n; i++)
     {
         arr[i] = new int[n];
     }
+
+
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < n; j++)
@@ -20,13 +27,18 @@ int main()
             //cin>>arr[i][j];
         }
     }
+
+
       int **brr = new int *[n];
     for (int i = 0; i < n; i++)
     {
         brr[i] = new int[n];
     }
    
+
     cout<<"*****************"<<endl;
+
+    
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < n; j++)
@@ -35,50 +47,32 @@ int main()
         }
         cout<<endl;
     }
-    for(int ni=0;ni<n;ni++)
-    {
-    for(int nj=0;nj<n;nj++)
-    { 
-        
-        
-    //     int sum = 0;
-    //     for (int i = 1; i <= pow(5,n); i=5*i)
-    // {
-    //     sum+=i;
-    // }
-    
+
+    int min = arr[0][0];
 
 
-
-    int min = arr[ni][nj];
-    if (nj>ni)
-    {
-    for (int i = ni; i <= nj; i++)
-    {
-        for (int j = i; j <= nj; j++)
+    for (int i = 0; i < n; i++)
+        brr[i][i] = arr[i][i];
+    for (int i = 0; i<n-1; i++)
+        for (int j = i+1; j<n; j++)
         {
-         if (arr[i][j]<min)
-         min = arr[i][j];
+            if (min>arr[i][j])
+                min = arr[i][j];
+            brr[i][j] = min;
         }
-    }
-    }
-    else
-    {
-    for (int i = ni; i >= nj; i--)
-    {
-        for (int j = i; j >= nj; j--)
+    min = arr[0][0];    
+    for (int j = 0; j<n-1; j++)
+        for (int i = j+1; i<n; i++)
         {
-         if (arr[i][j]<min)
-         min = arr[i][j];
-        }
-    }
-    }
-    brr[ni][nj] = min;
-    }
-    }
-    cout<<endl<<"*****************"<<endl;
-   
-   
+            if (min>arr[i][j])
+                min = arr[i][j];
+            brr[i][j] = min;
+        }    
+
+
+    cout<<"*****************"<<endl;
+
+
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < n; j++)
@@ -87,4 +81,5 @@ int main()
         }
         cout<<endl;
     }
+    cout<<"vse";
 }
