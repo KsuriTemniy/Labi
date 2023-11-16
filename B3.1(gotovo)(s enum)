@@ -1,8 +1,8 @@
-#include<conio.h>
+
 #include<iostream>
 #include<ctime>
 #include<stdlib.h>
-#include<windows.h>
+
 using namespace std;
 int main()
 {
@@ -15,30 +15,32 @@ int main()
     int lamerarr[5] = { 1,2,3,4,5 };
     bool iflamerarr = 0;
     ArrFillTypeChoose:
-    system("cls");
+       
+    enum  enmArrayInit
+    {Rand=1, Odindvatri, Sklavi,Priinic};
     cout << "Как вы хотите заполнить массив?" << endl;
-    cout << "1.Случайно" << endl << "2.\"Один, два, три, ... n\" " << endl << "3.Ввести с клавиатуры" << endl << "4.При описании с инициализацией" << endl;
-    char c = _getch();
-    system("cls");
-    char cc;
+    cout <<Rand<<" Случайно" << endl <<Odindvatri<< " \"Один, два, три, ... n\" " << endl<<Sklavi << " Ввести с клавиатуры" << endl<<Priinic << " При описании с инициализацией" << endl;
+    int c;
+    cin>>c;
+       
+    int cc;
     switch (c)
     {
-    case '1':
-        cout << "Введите желаемый хmin и хmax пределы рандома" << endl;
-        int xmin, xmax;
+    case Rand:
+        cout << "Введите желаемый хmin и хmax пределы рандома" << endl;        int xmin, xmax;
         cin >> xmin >> xmax;
     RandTypeChoose:
-        system("cls");
+           
         cout << "Желаете ли вы что бы числа в массиве не повторялись? " << endl << "1-Да" << endl << "2-Нет" << endl;
-        cc = _getch();
+        
+        cin>>cc;
         switch (cc)
         {
-        case '1':
-            system("cls");
+        case 1:
+               
             if ((xmax - xmin) <= n)
             {
                 cout << "Данного диапазона не хватит для заполнения массива длинной n" << endl;
-                Sleep(1000);
                 goto RandTypeChoose;
             }
             for (int i = 0; i < n; i++)
@@ -58,8 +60,8 @@ int main()
             }
             cout << endl;
             break;
-        case '2':
-            system("cls");
+        case 2:
+               
             for (int i = 0; i < n; i++)
             {
                 arr[i] = (rand() + xmin) % xmax;
@@ -67,10 +69,10 @@ int main()
             }
             cout << endl;
             break;
-        default: cout << "Введите 1 или 2" << endl; Sleep(1000); goto RandTypeChoose; break;
+        default: cout << "Введите 1 или 2" << endl; goto RandTypeChoose; break;
         }
         break;
-    case '2':
+    case Odindvatri:
         for (int i = 0; i < n; i++)
         {
             arr[i] = i;
@@ -78,22 +80,22 @@ int main()
         }
         cout << endl;
         break;
-    case '3':
+    case Sklavi:
         for (int i = 0; i < n; i++)
         {
             cin >> arr[i];
         }
-        system("cls");
+           
         for (int i = 0; i < n; i++)
         {
             cout << arr[i] << ' ';
         }
         cout << endl;
         break;
-    case '4':
+    case Priinic:
         iflamerarr = 1;
         break;
-    default:  cout << "Введите 1, 2 или 3" << endl; Sleep(1000); goto ArrFillTypeChoose; break;
+    default:  cout << "Введите 1, 2 или 3" << endl; goto ArrFillTypeChoose; break;
     }
     if (iflamerarr)
     {
