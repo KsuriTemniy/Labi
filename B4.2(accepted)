@@ -3,8 +3,6 @@
 
 using namespace std;
 
-////int pow(long long a, int b);
-
 int perevod_v_dvoich(int chislo)
 {
 int dvoich = 0, k = 1;
@@ -30,36 +28,6 @@ bool pr_na_palindr(int tek_chislo)
     }
     return (temp_temp_tek_chislo == tek_chislo);
 }
-
-void ispolsuyu_ci_stroku()
-{
-    char* ci_stroka = new char[7];
-    ci_stroka[0] = 'g';
-    ci_stroka[1] = 'o';
-    ci_stroka[2] = 'o';
-    ci_stroka[3] = 'd';
-    ci_stroka[4] = ' ';
-    ci_stroka[5] = 'b';
-    ci_stroka[6] = 'y';
-    ci_stroka[7] = 'e';
-    for (int i = 0; i <= 7; i++)
-        cout << ci_stroka[i];
-}
-
-//int pow(long long a, int b)
-//{
-//    long long temp = a;
-//    if (b == 0)
-//        return 1;
-//    if (b == 1)
-//        return a;
-//    for (int i = 1; i < b; i++)
-//    {
-//        a = temp * a;
-//    }
-//    return a;
-//}
-
 int main()
 {
     int verh_gran = pow(10, 6);
@@ -68,8 +36,4 @@ int main()
         if (pr_na_palindr(tek_chislo))
             if (pr_na_palindr(perevod_v_dvoich(tek_chislo)))
                 cout<<tek_chislo<<" "<< perevod_v_dvoich(tek_chislo)<< endl;
-  
-   
-    ispolsuyu_ci_stroku();
-
 }
