@@ -1,0 +1,74 @@
+#include <iostream>
+
+using namespace std;
+
+void replaceSubstring(char* str, int start, int length, char* newstr)
+{
+    int newlen = 0;
+    while (newstr[newlen] != '\0')
+    {
+        newlen++;
+    }
+
+    int orlen = 0;
+    while (str[orlen] != '\0') 
+    {
+        orlen++;
+    }
+
+    char tempstr[orlen];
+
+    for (int i = 0; i < start; ++i) 
+    {
+        tempstr[i] = str[i];
+    }
+
+    for (int i = 0; i < newlen; i++)
+    {
+        tempstr[start + i] = newstr[i];
+    }
+
+    for (int i = (start + length); i <= orlen; i++)
+    {
+        tempstr[newlen + i - length] = str[i];
+    }
+
+    tempstr[orlen-length+newlen+1] = '\0';
+
+    for (int i = 0; i <= (orlen-length+newlen+1); i++)
+    {
+        str[i] = tempstr[i];
+    }
+}
+
+int main()
+{
+    const int maxStringLength = 1000;
+    char* str = new char[maxStringLength];
+
+
+    cout << "Enter the original string: ";
+    cin.getline(str, maxStringLength);
+
+    int i = 0;
+    char replacementStr[5];    
+    while (str[i]!='\0' and str[i+3]!='\0')
+        if (str[i] == str[i+1] and str[i] == str[i+2])
+        {
+            char* temp = new char[5];
+            for (int j = 0; j < 5; j++)
+            {
+                temp[j] = str[i];
+            }
+            
+            replaceSubstring(str, i, 3, temp);
+            i+=5;
+            delete[] temp;
+        }
+        else
+            i+=1;
+
+    cout << "Resulting string: " << str << endl;
+    delete[] str;
+    return 0;
+}
